@@ -2,7 +2,7 @@
   "name": "curling",
   "version": "1.0.0",
   "description": "This node script makes calls to IBM's Natural Language Understanding API and returns the aggregate scores and categories from the URLs analyzed.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
