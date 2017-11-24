@@ -14,7 +14,7 @@ const getCategories = (url) => {
       pass: process.env.PASS,
       sendImmediately: false
     },
-    uri: 'https://watson-api-explorer.mybluemix.net/natural-language-understanding/api/v1/analyze',
+    uri: 'https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze',
     qs: {
         url: url,
         version: '2017-02-27',
