@@ -28,21 +28,38 @@ const getCategories = (url) => {
       return data.categories
     })
     .catch((err) => {
-      console.log('err', err)
+      throw new Error(err.message)
     })
 }
+
+const addScores = (results, data) => {
+  const existingIndex = results.map((data) => data.label).indexOf(data.label);
+
+  if (existingIndex !== -1) {
+    results[existingIndex] = Object.assign({}, results[existingIndex], {score: results[existingIndex].score + data.score})
+  } else {
+    results.push(data)
+  }
+}
+
+const results = []
 
 async.each(urls, (url, cb) => {
   getCategories(url)
     .then((categories) => {
       categories.forEach((category) => {
-        console.log('category', category)
+        addScores(results, category)
       })
 
       cb()
     })
+    .catch((err) => {
+      cb(err)
+    })
 }, (err) => {
   if (err) {
-    console.log('error', err)
+    console.log('Error fetching scores - ', err)
+  } else {
+    console.log(JSON.stringify(results))
   }
 })
